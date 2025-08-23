@@ -34,30 +34,6 @@ onMounted(() => {
       smoother = null
     }
 
-    const panels = Array.from(document.querySelectorAll('[data-panel]'))
-
-    panels.forEach((panel) => {
-      const line = panel.querySelector('[data-line]')
-      if (!line)
-        return
-
-      gsap.fromTo(
-        line,
-        { scaleX: 0, transformOrigin: 'left center' },
-        {
-          scaleX: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: panel,
-            start: 'top top',
-            end: '+=100%',
-            scrub: true,
-            pin: true,
-          },
-        },
-      )
-    })
-
     const links = Array.from(document.querySelectorAll('nav [data-nav-link]'))
     links.forEach((a) => {
       const href = a.getAttribute('href')
@@ -121,10 +97,6 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <RelevanceSection />
           </div>
         </section>
@@ -134,10 +106,6 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <ArchitectureSection />
           </div>
         </section>
@@ -147,10 +115,6 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <DemoSection />
           </div>
         </section>
@@ -206,16 +170,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.line {
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: rgba(0, 0, 0, 0.9);
-  transform-origin: left center;
-  will-change: transform;
-  border-radius: 9999px;
 }
 
 h1 {
