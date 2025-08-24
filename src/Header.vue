@@ -65,7 +65,7 @@ const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
 <style module lang="scss">
 .header {
   position: fixed;
-  top: 8px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 9999;
@@ -84,11 +84,8 @@ const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
   align-items: center;
   position: relative;
   z-index: 0;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 0 5%;
+  background: linear-gradient(var(--color-background) 30%, rgba(255, 255, 255, 0) 100%);
   border-radius: 9999px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 641px) {

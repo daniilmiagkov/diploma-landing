@@ -1,5 +1,5 @@
-<script setup>
-import { onBeforeUnmount, onMounted, useCssModule } from 'vue'
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref, useCssModule } from 'vue'
 import gsap from 'gsap'
 import { ScrollSmoother, ScrollToPlugin, ScrollTrigger } from 'gsap/all'
 import ArchitectureSection from './components/sections/Architecture.vue'
@@ -7,11 +7,14 @@ import DemoSection from './components/sections/Demo.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
 
+// @todo: add prefers-reduced-motion
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother)
 
 const styles = useCssModule()
-let ctx
-let smoother = null
+let ctx: gsap.Context
+let smoother: globalThis.ScrollSmoother | null = null
+const scrollTagRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   ctx = gsap.context(() => {
@@ -33,30 +36,6 @@ onMounted(() => {
       console.warn('Failed to init ScrollSmoother:', err)
       smoother = null
     }
-
-    const panels = Array.from(document.querySelectorAll('[data-panel]'))
-
-    panels.forEach((panel) => {
-      const line = panel.querySelector('[data-line]')
-      if (!line)
-        return
-
-      gsap.fromTo(
-        line,
-        { scaleX: 0, transformOrigin: 'left center' },
-        {
-          scaleX: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: panel,
-            start: 'top top',
-            end: '+=100%',
-            scrub: true,
-            pin: true,
-          },
-        },
-      )
-    })
 
     const links = Array.from(document.querySelectorAll('nav [data-nav-link]'))
     links.forEach((a) => {
@@ -91,8 +70,21 @@ onMounted(() => {
 
     ScrollTrigger.refresh()
   })
-})
 
+  window.addEventListener('scroll', hideOnScroll, { passive: true })
+})
+function hideOnScroll() {
+  const el = scrollTagRef.value
+  if (!el) 
+    return
+  if (window.scrollY > 20) {
+    el.style.transition = 'opacity 0.5s, transform 0.5s'
+    el.style.opacity = '0'
+    el.style.transform = 'translateY(12px) translateX(-50%)'
+    setTimeout(() => el.style.display = 'none', 1000)
+    window.removeEventListener('scroll', hideOnScroll)
+  }
+}
 onBeforeUnmount(() => {
   if (ctx)
     ctx.revert()
@@ -121,10 +113,6 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <RelevanceSection />
           </div>
         </section>
@@ -134,10 +122,6 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <ArchitectureSection />
           </div>
         </section>
@@ -147,14 +131,33 @@ onBeforeUnmount(() => {
           data-panel
         >
           <div :class="styles.inner">
-            <span
-              data-line
-              :class="styles.line"
-            />
             <DemoSection />
           </div>
         </section>
       </div>
+    </div>
+    <div
+      ref="scrollTagRef"
+      :class="$style.scrollTag"
+      aria-hidden="true"
+    >
+      <span :class="$style.scrollLabel">Scroll</span>
+      <svg
+        :class="$style.arrow"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 5v14M5 12l7 7 7-7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
     </div>
   </div>
 </template>
@@ -206,16 +209,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.line {
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: rgba(0, 0, 0, 0.9);
-  transform-origin: left center;
-  will-change: transform;
-  border-radius: 9999px;
+  padding-top: 200px;
 }
 
 h1 {
@@ -246,6 +240,64 @@ p {
 @media (min-width: 900px) {
   .nav a {
     font-size: 15px;
+  }
+}
+
+.scrollTag {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  z-index: 140;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--color-secondary, #e6eef8);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.12);
+  pointer-events: none;
+  opacity: 0.98;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -8px);
+  }
+}
+
+.arrow {
+  animation: arrowBounce 1s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollTag,
+  .arrow {
+    animation: none !important;
   }
 }
 </style>
