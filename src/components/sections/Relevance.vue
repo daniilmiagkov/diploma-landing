@@ -2,6 +2,7 @@
 import { onMounted, useCssModule } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
+import Section from '../Section.vue'
 
 type QA = {
   id: string
@@ -111,11 +112,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section
-    id="relevance"
-    data-section="relevance"
-    :class="$style.section"
-  >
+  <Section>
     <div :class="$style.container">
       <template
         v-for="(item) in faqs"
@@ -132,18 +129,10 @@ onMounted(() => {
         </p>
       </template>
     </div>
-  </section>
+  </Section>
 </template>
 
 <style module lang="scss">
-.section {
-  min-height: 100vh;
-  padding: var(--section-padding);
-  padding-top: calc(var(--header-height) + var(--section-padding));
-  max-width: min(800px, 95%);
-  margin: 0 auto var(--space-xl);
-}
-
 .container {
   padding: 0 var(--space-md);
 }
@@ -168,9 +157,6 @@ onMounted(() => {
   word-wrap: break-word;
   word-break: keep-all;
   hyphens: auto;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  font-weight: light;
 }
 </style>
