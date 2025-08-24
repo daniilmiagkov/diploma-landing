@@ -40,6 +40,8 @@ onMounted(() => {
     const links = Array.from(document.querySelectorAll('nav [data-nav-link]'))
     links.forEach((a) => {
       const href = a.getAttribute('href')
+      if (!href)
+        return
       const target = document.querySelector(href)
       if (!target)
         return
@@ -55,7 +57,7 @@ onMounted(() => {
       a.addEventListener('click', (e) => {
         e.preventDefault()
         if (smoother && typeof smoother.scrollTo === 'function') {
-          smoother.scrollTo(target, { offset: 0, duration: 1 })
+          smoother.scrollTo(target, true, 'top')
         }
         else {
           gsap.to(window, { duration: 1, scrollTo: { y: target, autoKill: false } })
@@ -63,7 +65,7 @@ onMounted(() => {
       })
     })
 
-    function setActive(link) {
+    function setActive(link: Element) {
       links.forEach(l => l.classList.remove(styles.active))
       link.classList.add(styles.active)
     }
@@ -75,7 +77,7 @@ onMounted(() => {
 })
 function hideOnScroll() {
   const el = scrollTagRef.value
-  if (!el) 
+  if (!el)
     return
   if (window.scrollY > 20) {
     el.style.transition = 'opacity 0.5s, transform 0.5s'

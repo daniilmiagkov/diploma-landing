@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, TriggerOpTypes, useCssModule } from 'vue'
+import { onMounted, useCssModule } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 
@@ -67,10 +67,9 @@ const faqs: QA[] = [
       'Снижение брака и переработок, уменьшение простоев и ремонтных работ, экономия на лабораторных тестах и повышение общей эффективности производства.',
   },
 ]
-// eslint-disable-next-line unused-imports/no-unused-vars
-let ctx: gsap.Context | null = null
+
 onMounted(() => {
-  ctx = gsap.context(() => {
+  gsap.context(() => {
     function allSettings(trigger: any, start: string): gsap.TweenVars {
       return {
         x: 0,
