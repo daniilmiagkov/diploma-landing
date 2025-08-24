@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, TriggerOpTypes, useCssModule } from 'vue'
+import { onMounted, useCssModule } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 
@@ -67,10 +67,9 @@ const faqs: QA[] = [
       'Снижение брака и переработок, уменьшение простоев и ремонтных работ, экономия на лабораторных тестах и повышение общей эффективности производства.',
   },
 ]
-// eslint-disable-next-line unused-imports/no-unused-vars
-let ctx: gsap.Context | null = null
+
 onMounted(() => {
-  ctx = gsap.context(() => {
+  gsap.context(() => {
     function allSettings(trigger: any, start: string): gsap.TweenVars {
       return {
         x: 0,
@@ -122,12 +121,12 @@ onMounted(() => {
         v-for="(item) in faqs"
         :key="item.id"
       >
-        <h1
+        <h2
           :id="item.id"
           :class="$style.question"
         >
           {{ item.question }}
-        </h1>
+        </h2>
         <p :class="$style.answer">
           {{ item.answer }}
         </p>
@@ -154,7 +153,6 @@ onMounted(() => {
   color: var(--color-primary);
   margin-top: var(--space-8xl);
   text-align: center;
-  line-height: 1.15;
 }
 
 .answer {
