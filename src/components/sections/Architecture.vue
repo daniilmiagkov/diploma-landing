@@ -37,13 +37,13 @@ onMounted(() => {
 </script>
 
 <template>
+  <h1
+    :class="$style.title"
+    data-animation
+  >
+    Архитектура — как всё устроено внутри
+  </h1>
   <Section>
-    <h1
-      :class="$style.title"
-      data-animation
-    >
-      Архитектура — как всё устроено внутри
-    </h1>
     <p
       :class="$style.content"
       data-animation
@@ -66,7 +66,7 @@ onMounted(() => {
 <style module lang="scss">
 .title {
   line-height: 1.15;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-4xl);
 }
 
 .content,

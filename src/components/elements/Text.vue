@@ -24,7 +24,7 @@ onMounted(() => {
         ease: 'back',
         scrollTrigger: {
           trigger: text,
-          start: 'top center',
+          start: 'top 70%',
           end: '+=100%',
           markers: true,
           toggleActions: 'play play pause play',

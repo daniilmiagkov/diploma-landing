@@ -128,7 +128,7 @@ html {
 }
 
 .mainNotification {
-  margin-bottom: 500px;
+  margin-bottom: 300px;
 }
 
 .scrollTag {
