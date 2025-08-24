@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref, useCssModule } from 'vue'
+import Text from './components/elements/Text.vue'
 import ArchitectureSection from './components/sections/Architecture.vue'
 import DemoSection from './components/sections/Demo.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
-
 // @todo: add prefers-reduced-motion
 
 const styles = useCssModule()
@@ -42,7 +42,11 @@ function hideOnScroll() {
             <RelevanceSection />
           </div>
         </section>
-        <h1>А теперь подробнее!</h1>
+        <Text
+          as="h1"
+          text="А теперь подробнее!"
+          :class="$style.mainNotification"
+        />
         <section
           id="architecture"
           :class="[styles.panel]"
@@ -123,10 +127,8 @@ html {
   transform: translateY(0);
 }
 
-@media (min-width: 900px) {
-  .nav a {
-    font-size: 15px;
-  }
+.mainNotification {
+  margin-bottom: 500px;
 }
 
 .scrollTag {
