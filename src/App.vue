@@ -3,6 +3,7 @@ import { onMounted, ref, useCssModule } from 'vue'
 import Text from './components/elements/Text.vue'
 import ArchitectureSection from './components/sections/Architecture.vue'
 import DemoSection from './components/sections/Demo.vue'
+import ImageProcessor from './components/sections/ImageProcessor.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
 // @todo: add prefers-reduced-motion
@@ -34,7 +35,6 @@ function hideOnScroll() {
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <section
-          id="relevance"
           :class="[styles.panel]"
           data-panel
         >
@@ -48,7 +48,6 @@ function hideOnScroll() {
           :class="$style.mainNotification"
         />
         <section
-          id="architecture"
           :class="[styles.panel]"
           data-panel
         >
@@ -57,7 +56,14 @@ function hideOnScroll() {
           </div>
         </section>
         <section
-          id="demo"
+          :class="[styles.panel]"
+          data-panel
+        >
+          <div :class="styles.inner">
+            <ImageProcessor />
+          </div>
+        </section>
+        <section
           :class="[styles.panel]"
           data-panel
         >
