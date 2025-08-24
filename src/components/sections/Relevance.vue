@@ -83,7 +83,7 @@ onMounted(() => {
           start,
           end: '+=100%',
           markers: true,
-          toggleActions: 'restart reverse play reverse',
+          toggleActions: 'play play pause play',
         },
       }
     }
