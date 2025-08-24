@@ -152,7 +152,9 @@ onMounted(() => {
   font-size: var(--font-size-2xl);
   color: var(--color-primary);
   margin-top: var(--space-8xl);
+  margin-bottom: var(--space-2xl);
   text-align: center;
+  line-height: 1.15;
 }
 
 .answer {
