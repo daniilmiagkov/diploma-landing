@@ -121,12 +121,12 @@ onMounted(() => {
         v-for="(item) in faqs"
         :key="item.id"
       >
-        <h1
+        <h2
           :id="item.id"
           :class="$style.question"
         >
           {{ item.question }}
-        </h1>
+        </h2>
         <p :class="$style.answer">
           {{ item.answer }}
         </p>
@@ -153,7 +153,6 @@ onMounted(() => {
   color: var(--color-primary);
   margin-top: var(--space-8xl);
   text-align: center;
-  line-height: 1.15;
 }
 
 .answer {

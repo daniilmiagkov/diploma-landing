@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, useCssModule } from 'vue'
+import gsap from 'gsap'
+import { ScrollSmoother, ScrollToPlugin, ScrollTrigger } from 'gsap/all'
 import { Menu, X } from 'lucide-vue-next'
 
 const items = [
@@ -10,6 +12,85 @@ const items = [
 
 const isMenuOpen = ref(false)
 const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother)
+
+const styles = useCssModule()
+let ctx: gsap.Context
+let smoother: globalThis.ScrollSmoother | null = null
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    try {
+      if (typeof ScrollSmoother !== 'undefined' && ScrollSmoother.create) {
+        smoother = ScrollSmoother.create({
+          wrapper: '#smooth-wrapper',
+          content: '#smooth-content',
+          smooth: 1.0,
+          effects: true,
+        })
+        console.log('ScrollSmoother initialized')
+      }
+      else {
+        console.warn('ScrollSmoother not available — fallback to native/GSAP scroll')
+      }
+    }
+    catch (err) {
+      console.warn('Failed to init ScrollSmoother:', err)
+      smoother = null
+    }
+
+    const links = Array.from(document.querySelectorAll('nav [data-nav-link]'))
+    links.forEach((a) => {
+      const href = a.getAttribute('href')
+      if (!href)
+        return
+      const target = document.querySelector(href)
+      if (!target)
+        return
+
+      ScrollTrigger.create({
+        trigger: target,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setActive(a),
+        onEnterBack: () => setActive(a),
+      })
+
+      a.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (smoother && typeof smoother.scrollTo === 'function') {
+          smoother.scrollTo(target, true, 'top')
+        }
+        else {
+          gsap.to(window, { duration: 1, scrollTo: { y: target, autoKill: false } })
+        }
+      })
+    })
+
+    function setActive(link: Element) {
+      links.forEach(l => l.classList.remove(styles.active))
+      link.classList.add(styles.active)
+    }
+
+    ScrollTrigger.refresh()
+  })
+})
+
+onBeforeUnmount(() => {
+  if (ctx)
+    ctx.revert()
+  try {
+    if (smoother && typeof smoother.kill === 'function') {
+      smoother.kill()
+      smoother = null
+    }
+  }
+  catch (e) {
+    console.warn('Error while killing smoother', e)
+  }
+  ScrollTrigger.getAll().forEach(st => st.kill())
+})
 </script>
 
 <template>
@@ -84,8 +165,8 @@ const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
   align-items: center;
   position: relative;
   z-index: 0;
-  background: linear-gradient(var(--color-background) 30%, rgba(255, 255, 255, 0) 100%);
-  border-radius: 9999px;
+  padding: var(--space-xl) 0;
+  background: linear-gradient(var(--color-background) 60%, rgba(255, 255, 255, 0) 100%);
 }
 
 @media (min-width: 641px) {
@@ -162,20 +243,13 @@ const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
   white-space: nowrap;
   text-decoration: none;
 }
+
 .link:hover {
   color: var(--color-accent);
 }
 
 .active {
   opacity: 1;
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: calc(-1 * var(--space-xs));
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--color-accent);
-  }
+  color: var(--color-accent);
 }
 </style>
