@@ -2,16 +2,14 @@
 import { onBeforeUnmount, onMounted, ref, useCssModule } from 'vue'
 import gsap from 'gsap'
 import { ScrollSmoother, ScrollToPlugin, ScrollTrigger } from 'gsap/all'
-import { Menu, X } from 'lucide-vue-next'
 
 const items = [
   { text: 'Актуальность', href: '#relevance' },
   { text: 'Архитектура', href: '#architecture' },
-  { text: 'Демо', href: '#demo' },
+  { text: 'Прототип', href: '#demo' },
 ]
 
 const isMenuOpen = ref(false)
-const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value)
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother)
 
@@ -99,30 +97,6 @@ onBeforeUnmount(() => {
       :class="$style.nav"
       aria-label="Главная навигация"
     >
-      <button
-        type="button"
-        :class="$style.burger"
-        aria-label="Меню"
-        :aria-expanded="isMenuOpen"
-        @click="toggleMenu"
-      >
-        <transition
-          name="icon-fade"
-          mode="out-in"
-        >
-          <Menu
-            v-if="!isMenuOpen"
-            key="menu"
-            :size="24"
-          />
-          <X
-            v-else
-            key="close"
-            :size="24"
-          />
-        </transition>
-      </button>
-
       <ul :class="[$style.list, isMenuOpen && $style.open]">
         <li
           v-for="item in items"
@@ -163,90 +137,41 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 0;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-background), #ffffff00 5%);
-}
-
-@media (min-width: 641px) {
-  .nav {
-    justify-content: center;
-  }
-  .header {
-    justify-content: center;
-  }
-}
-
-.burger {
-  display: none;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: black;
-  @media (max-width: 640px) {
-    display: block;
-  }
-  position: relative;
-  z-index: 30;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
-  appearance: none;
+  background: color-mix(in srgb, var(--color-gray), #ffffff00 15%);
 }
 
 .list {
   display: flex;
-  gap: var(--space-md);
   margin: 0;
-  padding: 0 var(--space-xs);
   list-style: none;
   align-items: center;
-
-  @media (max-width: 640px) {
-    position: absolute;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    transform: translateY(-120%);
-    transition: transform 0.34s cubic-bezier(0.2, 0.9, 0.3, 1);
-    z-index: 60;
-    will-change: transform;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
-}
-
-.open {
-  @media (max-width: 640px) {
-    transform: translateY(0);
-  }
-}
-
-.item {
-  position: relative;
 }
 
 .link {
   display: block;
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--color-secondary);
+  width: 150px;
+  color: var(--color-primary);
   transition: color var(--transition-fast);
   white-space: nowrap;
   text-decoration: none;
-}
+  text-align: center;
 
-.link:hover {
-  color: var(--color-accent);
+  &:hover {
+    color: var(--color-primary);
+  }
 }
 
 .active {
   opacity: 1;
-  color: var(--color-accent);
+  color: var(--color-gray);
+  background-color: var(--color-primary);
+  border-radius: 9999px;
+
+  &:hover {
+    color: var(--color-gray);
+  }
 }
 </style>
