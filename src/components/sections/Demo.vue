@@ -54,7 +54,7 @@ const videoTips = [
 
     <div :class="$style.videoContainer">
       <video
-        src="/public/prototype.mp4"
+        src="/prototype.mp4"
         :class="$style.video"
         muted
         controls
