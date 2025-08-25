@@ -14,7 +14,6 @@ const videoTips = [
   { top: '60%', left: '10%', text: 'Список объектов' },
   { top: '70%', left: '70%', text: 'Гистограмма фракций' },
   { top: '43%', left: '15%', text: 'Плеер управления' },
-
 ]
 </script>
 
@@ -52,7 +51,7 @@ const videoTips = [
       </ol>
     </Section>
 
-    <div :class="$style.videoContainer">
+    <div :class="$style.videoWrapper">
       <video
         src="/prototype.mp4"
         :class="$style.video"
@@ -78,61 +77,64 @@ const videoTips = [
   min-height: fit-content;
 }
 
-.videoContainer {
+.videoWrapper {
   position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  aspect-ratio: 1280/1436;
+  max-width: 1280px;
   margin-top: var(--space-lg);
+  max-height: 90vh;
+  margin: 0 auto;
+}
 
-  .video {
-    display: block;
-  }
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-  .tip {
-    position: absolute;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-  }
+.tip {
+  position: absolute;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
 
-  .number {
-    display: inline-block;
-    background: #ff5722;
-    color: #fff;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    text-align: center;
-    line-height: 28px;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 10;
-  }
+.number {
+  display: inline-block;
+  background: #ff5722;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 10;
+}
 
-  .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    white-space: nowrap;
-    font-size: 13px;
-    transition:
-      opacity 0.2s ease,
-      visibility 0.2s ease;
-    pointer-events: none;
-    z-index: 20;
-  }
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 13px;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 20;
+}
 
-  .tip:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
+.tip:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .list {
