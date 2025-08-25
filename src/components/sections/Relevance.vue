@@ -76,8 +76,6 @@ onMounted(() => {
         x: 0,
         opacity: 1,
         ease: 'power1.out',
-        duration: 1,
-
         scrollTrigger: {
           trigger,
           start,
@@ -93,7 +91,7 @@ onMounted(() => {
       gsap.fromTo(
         question,
         { x: -200, opacity: 0 },
-        allSettings(question, 'center center'),
+        allSettings(question, 'center bottom'),
       )
     })
 
@@ -102,7 +100,7 @@ onMounted(() => {
       gsap.fromTo(
         answer,
         { x: 200, opacity: 0 },
-        allSettings(answer, 'center center'),
+        allSettings(answer, 'center bottom'),
       )
     })
   })

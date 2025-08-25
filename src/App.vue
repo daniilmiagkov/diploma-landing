@@ -127,7 +127,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 200px;
 }
 
 .scrollDown {
@@ -141,7 +140,7 @@ html {
 }
 
 .mainNotification {
-  margin-bottom: 300px;
+  margin-bottom: 100px;
 }
 
 .scrollTag {

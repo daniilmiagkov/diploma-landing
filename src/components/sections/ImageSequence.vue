@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
+  <div :class="$style.section">
     <h1
       :class="$style.title"
       data-animation
@@ -176,12 +176,6 @@ onBeforeUnmount(() => {
   font-weight: 300;
 }
 
-ol {
-  list-style: none;
-  counter-reset: step;
-  padding: 0;
-}
-
 .item {
   counter-increment: step;
   position: relative;
@@ -204,6 +198,10 @@ ol {
   justify-content: center;
   min-height: 90vh;
   top: 10px;
+}
+
+.section {
+  min-height: 100vh;
 }
 
 .comparisonStack {

@@ -37,7 +37,7 @@ const videoTips = [
         as="h2"
         text="Что на экране"
         ease="circ"
-        start="top 50%"
+        start="top 60%"
       />
       <ol :class="$style.list">
         <Text
@@ -46,7 +46,7 @@ const videoTips = [
           as="li"
           :text="feature"
           ease="circ"
-          start="center 60%"
+          start="top 70%"
           :class="$style.feature"
         />
       </ol>
