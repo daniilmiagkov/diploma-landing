@@ -26,8 +26,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: item,
             start: 'top bottom',
-            markers: true,
-            toggleActions: 'play play pause play',
+            toggleActions: 'play none none none',
           },
         },
       )

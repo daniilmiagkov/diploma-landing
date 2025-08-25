@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref, useCssModule } from 'vue'
 import Text from './components/elements/Text.vue'
+import Section from './components/Section.vue'
 import ArchitectureSection from './components/sections/Architecture.vue'
 import DemoSection from './components/sections/Demo.vue'
 import ImageSequence from './components/sections/ImageSequence.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
-// @todo: add prefers-reduced-motion
 
 const styles = useCssModule()
 const scrollTagRef = ref<HTMLElement | null>(null)
@@ -35,13 +35,22 @@ function hideOnScroll() {
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <section
+          id="intro"
+          :class="[styles.panel]"
+          data-panel
+        >
+          <Section>
+            <h1>Что это?</h1>
+            <p>Данный сайт создан в качестве интерактивной демонстрации моей выпускной квалификационной работы. Он представляет результаты исследования и разработки программного комплекса для анализа изображений с применением методов компьютерного зрения. Цель проекта — показать, как современные алгоритмы обработки и сегментации могут быть использованы для автоматизированного выявления и измерения объектов на изображениях, что открывает возможности для применения подобных решений в промышленности, науке и инженерной практике.</p>
+          </Section>
+        </section>
+
+        <section
           id="relevance"
           :class="[styles.panel]"
           data-panel
         >
-          <div :class="styles.inner">
-            <RelevanceSection />
-          </div>
+          <RelevanceSection />
         </section>
         <Text
           as="h1"
@@ -53,17 +62,13 @@ function hideOnScroll() {
           :class="[styles.panel]"
           data-panel
         >
-          <div :class="styles.inner">
-            <ArchitectureSection />
-          </div>
+          <ArchitectureSection />
         </section>
         <section
           :class="[styles.panel]"
           data-panel
         >
-          <div :class="styles.inner">
-            <ImageSequence />
-          </div>
+          <ImageSequence />
         </section>
         <section
           id="demo"
@@ -122,7 +127,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 200px;
 }
 
 .scrollDown {
@@ -136,7 +140,7 @@ html {
 }
 
 .mainNotification {
-  margin-bottom: 300px;
+  margin-bottom: 100px;
 }
 
 .scrollTag {

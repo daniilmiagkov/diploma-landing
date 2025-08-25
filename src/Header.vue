@@ -27,7 +27,6 @@ onMounted(() => {
           smooth: 1.0,
           effects: true,
         })
-        console.log('ScrollSmoother initialized')
       }
       else {
         console.warn('ScrollSmoother not available — fallback to native/GSAP scroll')
@@ -93,6 +92,13 @@ onBeforeUnmount(() => {
 
 <template>
   <header :class="$style.header">
+    <a
+      href="https://github.com/daniilmiagkov/diploma_site"
+      :class="$style.linkOnGithub"
+      target="_blank"
+    >
+      daniilmiagkov/diploma_site
+    </a>
     <nav
       :class="$style.nav"
       aria-label="Главная навигация"
@@ -120,13 +126,14 @@ onBeforeUnmount(() => {
 <style module lang="scss">
 .header {
   position: fixed;
+  top: var(--space-xs);
   left: 0;
   right: 0;
   z-index: 9999;
   height: var(--header-height);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  pointer-events: auto;
 }
 
 .nav {
@@ -147,21 +154,26 @@ onBeforeUnmount(() => {
   align-items: center;
 }
 
-.link {
+.link,
+.linkOnGithub {
   display: block;
   padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  width: 150px;
+  width: 160px;
   color: var(--color-primary);
   transition: color var(--transition-fast);
   white-space: nowrap;
   text-decoration: none;
   text-align: center;
+}
 
-  &:hover {
-    color: var(--color-primary);
-  }
+.link:hover {
+  color: var(--color-primary);
+}
+
+.linkOnGithub:hover {
+  color: var(--color-accent);
 }
 
 .active {

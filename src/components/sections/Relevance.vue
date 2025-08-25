@@ -11,7 +11,7 @@ type QA = {
 }
 
 const styles = useCssModule()
-gsap.registerEffect(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 const faqs: QA[] = [
   {
     id: 'for-whom',
@@ -76,14 +76,11 @@ onMounted(() => {
         x: 0,
         opacity: 1,
         ease: 'power1.out',
-        duration: 1,
-
         scrollTrigger: {
           trigger,
           start,
           end: '+=100%',
-          markers: true,
-          toggleActions: 'play play pause play',
+          toggleActions: 'play none none none',
         },
       }
     }
@@ -94,17 +91,16 @@ onMounted(() => {
       gsap.fromTo(
         question,
         { x: -200, opacity: 0 },
-        allSettings(question, 'center center'),
+        allSettings(question, 'center bottom'),
       )
     })
 
-    const answers = Array.from(document.getElementsByClassName(styles.answer))
-
+    const answers = Array.from(document.querySelectorAll('[data-qa="answer"]'))
     answers.forEach((answer) => {
       gsap.fromTo(
         answer,
         { x: 200, opacity: 0 },
-        allSettings(answer, 'center center'),
+        allSettings(answer, 'center bottom'),
       )
     })
   })
@@ -124,7 +120,7 @@ onMounted(() => {
         >
           {{ item.question }}
         </h2>
-        <p :class="$style.answer">
+        <p data-qa="answer">
           {{ item.answer }}
         </p>
       </template>

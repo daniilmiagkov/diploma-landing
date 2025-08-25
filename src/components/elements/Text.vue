@@ -34,8 +34,7 @@ onMounted(() => {
           trigger: text,
           start: props.start,
           end: '+=100%',
-          markers: true,
-          toggleActions: 'play play pause play',
+          toggleActions: 'play none none none',
         },
       },
     )

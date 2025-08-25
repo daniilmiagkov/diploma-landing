@@ -60,7 +60,6 @@ function initGsap(stack: HTMLElement, layerSelector: string, captionSelector: st
     return
 
   const totalWidth = stack.offsetWidth * (layers.length - 1)
-  console.log('[GSAP] stack.offsetWidth:', stack.offsetWidth, 'layers:', layers.length, 'totalWidth:', totalWidth)
 
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -104,7 +103,6 @@ function initGsap(stack: HTMLElement, layerSelector: string, captionSelector: st
   }
 
   ScrollTrigger.refresh()
-  console.log('[GSAP] initialized timeline with', layers.length - 1, 'steps')
 }
 
 onBeforeUnmount(() => {
@@ -117,7 +115,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
+  <div :class="$style.section">
     <h1
       :class="$style.title"
       data-animation
@@ -178,12 +176,6 @@ onBeforeUnmount(() => {
   font-weight: 300;
 }
 
-ol {
-  list-style: none;
-  counter-reset: step;
-  padding: 0;
-}
-
 .item {
   counter-increment: step;
   position: relative;
@@ -206,6 +198,10 @@ ol {
   justify-content: center;
   min-height: 90vh;
   top: 10px;
+}
+
+.section {
+  min-height: 100vh;
 }
 
 .comparisonStack {
