@@ -1,9 +1,64 @@
+/* Montserrat Thin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Thin.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 100;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-ThinItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Montserrat ExtraLight */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-ExtraLight.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 200;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Montserrat Light */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Light.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-LightItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
 /* Montserrat Regular */
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: url('../assets/fonts/montserrat-regular.ttf') format('truetype');
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Italic.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -12,7 +67,30 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
-  src: url('../assets/fonts/montserrat-medium.ttf') format('truetype');
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 500;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-MediumItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Montserrat SemiBold */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 600;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -21,7 +99,46 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  src: url('../assets/fonts/montserrat-bold.ttf') format('truetype');
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-BoldItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Montserrat ExtraBold */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 800;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Montserrat Black */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-Black.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 900;
+  src: url('../src/assets/fonts/Montserrat/Montserrat-BlackItalic.ttf') format('truetype');
   font-display: swap;
 }
 
