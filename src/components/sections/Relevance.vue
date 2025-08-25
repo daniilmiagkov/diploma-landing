@@ -11,7 +11,7 @@ type QA = {
 }
 
 const styles = useCssModule()
-gsap.registerEffect(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 const faqs: QA[] = [
   {
     id: 'for-whom',
@@ -98,8 +98,7 @@ onMounted(() => {
       )
     })
 
-    const answers = Array.from(document.getElementsByClassName(styles.answer))
-
+    const answers = Array.from(document.querySelectorAll('[data-qa="answer"]'))
     answers.forEach((answer) => {
       gsap.fromTo(
         answer,
@@ -124,7 +123,7 @@ onMounted(() => {
         >
           {{ item.question }}
         </h2>
-        <p :class="$style.answer">
+        <p data-qa="answer">
           {{ item.answer }}
         </p>
       </template>
