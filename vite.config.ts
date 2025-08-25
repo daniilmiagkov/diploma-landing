@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/diploma_site/',
+  base: '/diploma-landing/',
   plugins: [
     vue(),
   ],

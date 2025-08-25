@@ -1,5 +1,52 @@
-# Vue 3 + TypeScript + Vite
+# Сайт демонстрации дипломной работы
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+https://daniilmiagkov.github.io/diploma-landing/
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Сайт — презентация дипломного проекта по автоматизации анализа изображений и карт глубины (ZED2i).
+
+---
+
+## Что внутри
+
+- Краткое описание проекта и задачи исследования.
+- Диаграмма архитектуры «конвейер данных».
+- Последовательность обработки кадра: шаги «до → после».
+- Видео работы.
+
+---
+
+## Использование GSAP
+### Анимация изображений — «до → после»
+
+Используется Timeline с плагином ScrollTrigger: при скролле таймлайн «прокручивается» (scrub) и фиксирует блок на экране (pin), последовательно сдвигая слои и показывая каждое изображение. Перед стартом скрипт ждёт загрузки картинок, слои и картинки ставятся в начальные позиции через gsap.set, а переходы выполняются методами tl.to(...). Подписи появляют плавно с небольшим смещением и easing. При размонтировании всё корректно останавливается/удаляется.
+
+### Анимация интерфейса и блоков (FAQ, заголовки и т.п.)
+
+Для заголовков и ответов применяются простые анимации fromTo с ScrollTrigger: заголовки «въезжают» слева, ответы — справа, с изменением прозрачности. Всё инициализируется внутри gsap.context() для безопасной работы в Vue и корректной очистки.
+
+---
+
+## Стек
+
+- Vue 3 (Composition API) + TypeScript
+- scss
+- Vite — dev / build
+- GSAP — анимации при скролле
+
+---
+
+## Быстрый старт
+
+```bash
+# установить зависимости (рекомендуется pnpm)
+pnpm install
+
+# dev сервер
+pnpm dev
+
+# собрать production
+pnpm build
+
+# локально просмотреть билд
+pnpm preview
+```

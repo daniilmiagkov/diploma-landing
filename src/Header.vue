@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
 <template>
   <header :class="$style.header">
     <a
-      href="https://github.com/daniilmiagkov/diploma_site"
+      href="https://daniilmiagkov.github.io/diploma-landing/"
       :class="$style.linkOnGithub"
       target="_blank"
     >
