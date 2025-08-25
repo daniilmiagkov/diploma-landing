@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
       :class="$style.linkOnGithub"
       target="_blank"
     >
-      daniilmiagkov/diploma_site
+      daniilmiagkov/diploma-landing
     </a>
     <nav
       :class="$style.nav"

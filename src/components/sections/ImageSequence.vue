@@ -165,6 +165,7 @@ onBeforeUnmount(() => {
 .title {
   line-height: 1.15;
   margin-bottom: var(--space-4xl);
+  padding: 0 var(--space-4xl);
 }
 
 .content,

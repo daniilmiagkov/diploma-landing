@@ -55,6 +55,7 @@ function hideOnScroll() {
         <Text
           as="h1"
           text="А теперь подробнее!"
+          start="top bottom"
           :class="$style.mainNotification"
         />
         <section
@@ -140,7 +141,7 @@ html {
 }
 
 .mainNotification {
-  margin-bottom: 100px;
+  margin: 300px 0 100px;
 }
 
 .scrollTag {
