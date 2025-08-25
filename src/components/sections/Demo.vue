@@ -1,114 +1,163 @@
 <script setup lang="ts">
+import Text from '../elements/Text.vue'
+import Section from '../Section.vue'
 
+const features = [
+  'Видео с оверлеем — цветной кадр + контуры объектов. Разным цветом подсвечиваются объекты, найденные на карте глубины и на цветном изображении',
+  'Список объектов — каждый элемент содержит id, диагональ, координаты, номер кадра и счётчик обновлений; по клику раскрывается история состояний (кадр, время, x, y, d).',
+  'Гистограмма фракций — динамическое распределение размеров (Chart.js), обновляется при каждом кадре и служит быстрой диагностикой смещений в фракциях.',
+  'Плеер управления — кнопки связи с сервером, инициализации камеры, запуска видео, паузы и остановки. Ползунок для выбора кадра.',
+]
+
+const videoTips = [
+  { top: '20%', left: '15%', text: 'Кадры с оверлеем' },
+  { top: '60%', left: '10%', text: 'Список объектов' },
+  { top: '70%', left: '70%', text: 'Гистограмма фракций' },
+  { top: '43%', left: '15%', text: 'Плеер управления' },
+
+]
 </script>
 
 <template>
-  <section
-    id="demo"
-    :class="$style.section"
-  >
-    <h1>
-      Демо
-    </h1>
-  </section>
+  <div>
+    <Text
+      as="h1"
+      text="Прототип!"
+    />
+
+    <Section :class="$style.section">
+      <Text
+        as="p"
+        text="Прототип интерфейса — это рабочая панель оператора для интерактивного контроля и анализа видеопотока в реальном времени. Основная идея — дать инженеру быстрый и однозначный доступ к важным данным без лишних кликов."
+        ease="circ"
+        start="top 50%"
+        :class="$style.intro"
+      />
+      <Text
+        as="h2"
+        text="Что на экране"
+        ease="circ"
+        start="top 50%"
+      />
+      <ol :class="$style.list">
+        <Text
+          v-for="(feature, i) in features"
+          :key="i"
+          as="li"
+          :text="feature"
+          ease="circ"
+          start="center 60%"
+          :class="$style.feature"
+        />
+      </ol>
+    </Section>
+
+    <div :class="$style.videoContainer">
+      <video
+        src="/public/prototype.mp4"
+        :class="$style.video"
+        muted
+        controls
+      />
+
+      <div
+        v-for="(tip, i) in videoTips"
+        :key="i"
+        :class="$style.tip"
+        :style="{ top: tip.top, left: tip.left }"
+      >
+        <span :class="$style.number">{{ i + 1 }}</span>
+        <span :class="$style.tooltip">{{ tip.text }}</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style module lang="scss">
 .section {
-  min-height: 100vh;
+  min-height: fit-content;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
-  padding: var(--section-padding);
-  padding-top: calc(var(--header-height) + var(--section-padding));
-  width: 100vw;
+  justify-content: center;
+  margin-top: var(--space-lg);
 
-  text-align: center;
-
-  h1 {
-    font-size: var(--font-size-2xl);
-    color: var(--color-primary);
-    margin-bottom: var(--space-lg);
+  .video {
+    display: block;
   }
 
-  h2 {
-    font-size: var(--font-size-xl);
-    color: var(--color-secondary);
-    margin-bottom: var(--space-md);
+  .tip {
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
   }
-}
 
-.mainDemo {
-  width: 100%;
-  max-width: min(90vw, 900px);
-  margin: 0 auto;
-}
+  .number {
+    display: inline-block;
+    background: #ff5722;
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+  }
 
-.demoVideo {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-}
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 13px;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 20;
+  }
 
-.features {
-  width: 100%;
-  max-width: min(90vw, 800px);
-  margin: 0 auto;
-
-  ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: var(--space-md);
-    list-style: none;
-    padding: 0;
-
-    li {
-      padding: var(--space-md);
-      background: var(--color-surface);
-      border-radius: var(--radius-sm);
-      transition: transform var(--transition-fast);
-      box-shadow: var(--shadow-sm);
-    }
+  .tip:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
-.howTo {
-  width: 100%;
-  max-width: min(90vw, 800px);
-  margin: 0 auto;
+.list {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+}
 
-  ol {
-    counter-reset: step;
-    list-style: none;
-    padding: 0;
+.feature {
+  counter-increment: step;
+  position: relative;
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-xl);
+}
 
-    li {
-      position: relative;
-      padding-left: calc(var(--space-xl) + var(--space-xs));
-      margin-bottom: var(--space-md);
+.feature::before {
+  content: counter(step, decimal-leading-zero) '.';
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
 
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      &::before {
-        counter-increment: step;
-        content: counter(step);
-        position: absolute;
-        left: 0;
-        top: 0.2rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        background: var(--color-accent);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.875rem;
-      }
-    }
-  }
+.intro {
+  margin-bottom: var(--space-xl);
 }
 </style>

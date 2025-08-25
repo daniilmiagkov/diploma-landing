@@ -3,10 +3,18 @@ import { onMounted, useId } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 
-defineProps<{
-  as: string
-  text: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    as: string
+    text: string
+    ease?: gsap.EaseString | gsap.EaseFunction
+    start?: string | number | ScrollTrigger.StartEndFunc
+  }>(),
+  {
+    ease: 'back',
+    start: 'top 70%',
+  },
+)
 
 const id = useId()
 gsap.registerEffect(ScrollTrigger)
@@ -21,10 +29,10 @@ onMounted(() => {
       {
         y: 0,
         opacity: 1,
-        ease: 'back',
+        ease: props.ease,
         scrollTrigger: {
           trigger: text,
-          start: 'top 70%',
+          start: props.start,
           end: '+=100%',
           markers: true,
           toggleActions: 'play play pause play',

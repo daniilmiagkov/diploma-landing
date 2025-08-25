@@ -51,7 +51,7 @@ onMounted(() => {
       >
         Представьте себе «конвейер данных»:
       </p>
-      <ol>
+      <ol :class="$style.list">
         <li
           v-for="item in list"
           :key="item"
@@ -71,30 +71,19 @@ onMounted(() => {
   margin-bottom: var(--space-4xl);
 }
 
-.content,
-.item {
-  color: var(--color-secondary);
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--space-xs);
-  text-align: justify;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-wrap: break-word;
-  word-break: keep-all;
-  font-weight: 300;
-}
-
-ol {
+.list {
   list-style: none;
   counter-reset: step;
   padding: 0;
 }
+
 .item {
   counter-increment: step;
   position: relative;
   margin-bottom: var(--space-xs);
   padding-left: var(--space-xl);
 }
+
 .item::before {
   content: counter(step, decimal-leading-zero) '.';
   position: absolute;
