@@ -105,7 +105,6 @@ function hideOnScroll() {
 <style module>
 .pagesScroll {
   position: relative;
-  font-family: Inter, system-ui, sans-serif;
 }
 
 html {
