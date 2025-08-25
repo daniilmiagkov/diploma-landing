@@ -3,7 +3,7 @@ import { onMounted, ref, useCssModule } from 'vue'
 import Text from './components/elements/Text.vue'
 import ArchitectureSection from './components/sections/Architecture.vue'
 import DemoSection from './components/sections/Demo.vue'
-import ImageProcessor from './components/sections/ImageProcessor.vue'
+import ImageSequence from './components/sections/ImageSequence.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
 // @todo: add prefers-reduced-motion
@@ -62,7 +62,7 @@ function hideOnScroll() {
           data-panel
         >
           <div :class="styles.inner">
-            <ImageProcessor />
+            <ImageSequence />
           </div>
         </section>
         <section
