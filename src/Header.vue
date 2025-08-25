@@ -95,7 +95,8 @@ onBeforeUnmount(() => {
   <header :class="$style.header">
     <a
       href="https://github.com/daniilmiagkov/diploma_site"
-      :class="$style.link"
+      :class="$style.linkOnGithub"
+      target="_blank"
     >
       daniilmiagkov/diploma_site
     </a>
@@ -123,9 +124,10 @@ onBeforeUnmount(() => {
   </header>
 </template>
 
-  <style module lang="scss">
-  .header {
+<style module lang="scss">
+.header {
   position: fixed;
+  top: var(--space-xs);
   left: 0;
   right: 0;
   z-index: 9999;
@@ -153,7 +155,8 @@ onBeforeUnmount(() => {
   align-items: center;
 }
 
-.link {
+.link,
+.linkOnGithub {
   display: block;
   padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-sm);
@@ -164,10 +167,14 @@ onBeforeUnmount(() => {
   white-space: nowrap;
   text-decoration: none;
   text-align: center;
+}
 
-  &:hover {
-    color: var(--color-primary);
-  }
+.link:hover {
+  color: var(--color-primary);
+}
+
+.linkOnGithub:hover {
+  color: var(--color-accent);
 }
 
 .active {
