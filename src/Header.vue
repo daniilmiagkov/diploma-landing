@@ -93,6 +93,12 @@ onBeforeUnmount(() => {
 
 <template>
   <header :class="$style.header">
+    <a
+      href="https://github.com/daniilmiagkov/diploma_site"
+      :class="$style.link"
+    >
+      daniilmiagkov/diploma_site
+    </a>
     <nav
       :class="$style.nav"
       aria-label="Главная навигация"
@@ -117,16 +123,16 @@ onBeforeUnmount(() => {
   </header>
 </template>
 
-<style module lang="scss">
-.header {
+  <style module lang="scss">
+  .header {
   position: fixed;
   left: 0;
   right: 0;
   z-index: 9999;
   height: var(--header-height);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  pointer-events: auto;
 }
 
 .nav {
@@ -152,7 +158,7 @@ onBeforeUnmount(() => {
   padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  width: 150px;
+  width: 160px;
   color: var(--color-primary);
   transition: color var(--transition-fast);
   white-space: nowrap;
