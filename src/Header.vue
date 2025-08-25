@@ -27,7 +27,6 @@ onMounted(() => {
           smooth: 1.0,
           effects: true,
         })
-        console.log('ScrollSmoother initialized')
       }
       else {
         console.warn('ScrollSmoother not available — fallback to native/GSAP scroll')

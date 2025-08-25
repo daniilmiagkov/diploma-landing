@@ -82,8 +82,7 @@ onMounted(() => {
           trigger,
           start,
           end: '+=100%',
-          markers: true,
-          toggleActions: 'play play pause play',
+          toggleActions: 'play none none none',
         },
       }
     }

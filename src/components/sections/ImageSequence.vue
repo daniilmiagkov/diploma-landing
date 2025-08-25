@@ -60,7 +60,6 @@ function initGsap(stack: HTMLElement, layerSelector: string, captionSelector: st
     return
 
   const totalWidth = stack.offsetWidth * (layers.length - 1)
-  console.log('[GSAP] stack.offsetWidth:', stack.offsetWidth, 'layers:', layers.length, 'totalWidth:', totalWidth)
 
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -104,7 +103,6 @@ function initGsap(stack: HTMLElement, layerSelector: string, captionSelector: st
   }
 
   ScrollTrigger.refresh()
-  console.log('[GSAP] initialized timeline with', layers.length - 1, 'steps')
 }
 
 onBeforeUnmount(() => {
