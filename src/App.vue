@@ -35,6 +35,7 @@ function hideOnScroll() {
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <section
+          id="relevance"
           :class="[styles.panel]"
           data-panel
         >
@@ -48,6 +49,7 @@ function hideOnScroll() {
           :class="$style.mainNotification"
         />
         <section
+          id="architecture"
           :class="[styles.panel]"
           data-panel
         >
@@ -64,6 +66,7 @@ function hideOnScroll() {
           </div>
         </section>
         <section
+          id="demo"
           :class="[styles.panel]"
           data-panel
         >
