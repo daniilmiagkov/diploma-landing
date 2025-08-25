@@ -5,16 +5,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const img = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 const processorSteps = [
-  { title: 'Нормализованное серое изображение', url: '/images/2.png' },
-  { title: 'Результат медианной фильтрации (5×5)', url: '/images/3.png' },
-  { title: 'CLAHE: адаптивная коррекция контраста', url: '/images/4.png' },
-  { title: 'EqualizeHist: глобальное выравнивание гистограммы', url: '/images/5.png' },
-  { title: 'Адаптивная бинаризация', url: '/images/6.png' },
-  { title: 'Маска после морфологического открытия', url: '/images/7.png' },
-  { title: 'Карта расстояний (distance transform)', url: '/images/9.png' },
-  { title: 'Бинарная маска переднего плана (foreground_mask)', url: '/images/10.png' },
-  { title: 'Итоговая сегментация с bounding box', url: '/images/11.png' },
+  { title: 'Нормализованное серое изображение', url: img('images/2.png') },
+  { title: 'Результат медианной фильтрации (5×5)', url: img('images/3.png') },
+  { title: 'CLAHE: адаптивная коррекция контраста', url: img('images/4.png') },
+  { title: 'EqualizeHist: глобальное выравнивание гистограммы', url: img('images/5.png') },
+  { title: 'Адаптивная бинаризация', url: img('images/6.png') },
+  { title: 'Маска после морфологического открытия', url: img('images/7.png') },
+  { title: 'Карта расстояний (distance transform)', url: img('images/9.png') },
+  { title: 'Бинарная маска переднего плана (foreground_mask)', url: img('images/10.png') },
+  { title: 'Итоговая сегментация с bounding box', url: img('images/11.png') },
 ]
 
 const styles = useCssModule()
