@@ -3,11 +3,18 @@ import Text from '../elements/Text.vue'
 import Section from '../Section.vue'
 
 const features = [
-  'Видео с оверлеем — цветной кадр + контуры и ID объектов, размеры в мм рядом с каждым объектом; новые объекты подсвечиваются отдельно, исчезнувшие помечаются как «пропавшие».',
-  'Сайдбар со списком объектов — каждый элемент содержит id, диагональ, координаты, время последнего обнаружения и счётчик обновлений; по клику раскрывается история состояний (кадр, время, x, y, d).',
+  'Видео с оверлеем — цветной кадр + контуры объектов. Разным цветом подсвечиваются объекты, найденные на карте глубины и на цветном изображении',
+  'Список объектов — каждый элемент содержит id, диагональ, координаты, номер кадра и счётчик обновлений; по клику раскрывается история состояний (кадр, время, x, y, d).',
   'Гистограмма фракций — динамическое распределение размеров (Chart.js), обновляется при каждом кадре и служит быстрой диагностикой смещений в фракциях.',
-  'Плеер управления — кнопки Init Camera, Play / Pause / Stop, ползунок для выбора диапазона кадров и кнопка «Play range» для последовательного воспроизведения.',
-  'Статусы соединения и камеры — индикаторы WebSocket (готов/нет), состояние инициализации камеры и сообщения об ошибках.',
+  'Плеер управления — кнопки связи с сервером, инициализации камеры, запуска видео, паузы и остановки. Ползунок для выбора кадра.',
+]
+
+const videoTips = [
+  { top: '20%', left: '15%', text: 'Кадры с оверлеем' },
+  { top: '60%', left: '10%', text: 'Список объектов' },
+  { top: '70%', left: '70%', text: 'Гистограмма фракций' },
+  { top: '43%', left: '15%', text: 'Плеер управления' },
+
 ]
 </script>
 
@@ -17,6 +24,7 @@ const features = [
       as="h1"
       text="Прототип!"
     />
+
     <Section :class="$style.section">
       <Text
         as="p"
@@ -43,6 +51,7 @@ const features = [
         />
       </ol>
     </Section>
+
     <div :class="$style.videoContainer">
       <video
         src="/public/prototype.mp4"
@@ -50,6 +59,16 @@ const features = [
         muted
         controls
       />
+
+      <div
+        v-for="(tip, i) in videoTips"
+        :key="i"
+        :class="$style.tip"
+        :style="{ top: tip.top, left: tip.left }"
+      >
+        <span :class="$style.number">{{ i + 1 }}</span>
+        <span :class="$style.tooltip">{{ tip.text }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -60,13 +79,59 @@ const features = [
 }
 
 .videoContainer {
+  position: relative;
   width: 100%;
-  align-items: center;
-  flex-direction: column;
   display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
 
   .video {
-    margin: 0 auto;
+    display: block;
+  }
+
+  .tip {
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .number {
+    display: inline-block;
+    background: #ff5722;
+    color: #fff;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 13px;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .tip:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
