@@ -146,11 +146,9 @@ onBeforeUnmount(() => {
 <style module lang="scss">
 .header {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
   z-index: 9999;
-  padding: 0 var(--container-padding);
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -158,15 +156,14 @@ onBeforeUnmount(() => {
 }
 
 .nav {
-  width: min(1200px, 100%);
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   z-index: 0;
-  padding: var(--space-xl) 0;
-  background: linear-gradient(var(--color-background) 60%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-background), #ffffff00 5%);
 }
 
 @media (min-width: 641px) {
@@ -199,7 +196,7 @@ onBeforeUnmount(() => {
   display: flex;
   gap: var(--space-md);
   margin: 0;
-  padding: 10px;
+  padding: 0 var(--space-xs);
   list-style: none;
   align-items: center;
 

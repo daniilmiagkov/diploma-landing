@@ -3,6 +3,7 @@ import { onMounted, ref, useCssModule } from 'vue'
 import Text from './components/elements/Text.vue'
 import ArchitectureSection from './components/sections/Architecture.vue'
 import DemoSection from './components/sections/Demo.vue'
+import ImageSequence from './components/sections/ImageSequence.vue'
 import RelevanceSection from './components/sections/Relevance.vue'
 import Header from './Header.vue'
 // @todo: add prefers-reduced-motion
@@ -54,6 +55,14 @@ function hideOnScroll() {
         >
           <div :class="styles.inner">
             <ArchitectureSection />
+          </div>
+        </section>
+        <section
+          :class="[styles.panel]"
+          data-panel
+        >
+          <div :class="styles.inner">
+            <ImageSequence />
           </div>
         </section>
         <section
@@ -128,7 +137,7 @@ html {
 }
 
 .mainNotification {
-  margin-bottom: 500px;
+  margin-bottom: 300px;
 }
 
 .scrollTag {

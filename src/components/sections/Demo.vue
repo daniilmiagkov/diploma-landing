@@ -10,14 +10,6 @@
     <h1>
       Демо
     </h1>
-
-    <!-- <video
-      src="/2025-08-14 11-42-33.mp4"
-      controls
-      :class="$style.demoVideo"
-    >
-      Ваш браузер не поддерживает видео HTML5.
-    </video> -->
   </section>
 </template>
 
