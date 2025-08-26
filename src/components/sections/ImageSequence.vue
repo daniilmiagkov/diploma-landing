@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  max-height: 90vh;
   top: 10px;
 }
 
@@ -211,6 +211,7 @@ onBeforeUnmount(() => {
   padding-bottom: 56.25%;
   overflow: hidden;
   background: #111;
+  max-height: 90vh;
 }
 
 .base {
