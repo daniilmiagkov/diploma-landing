@@ -235,8 +235,8 @@ onBeforeUnmount(() => {
 
 .layerCaption {
   position: absolute;
-  left: 16px;
-  bottom: 16px;
+  left: 10%;
+  bottom: 10%;
   z-index: 30;
   max-width: calc(100% - 40px);
   background: rgba(0, 0, 0, 0.8);
